@@ -4,6 +4,7 @@ import { state } from "cerebral/tags"
 import ImageSprite from "./ImageSprite";
 import p2 from "./player2.png";
 //const bunny = "https://i.imgur.com/IaUrttj.png";
+import ClickExplotion from "./ClickExplotion";
 
 class Player extends React.Component {
     render() {
@@ -12,12 +13,15 @@ class Player extends React.Component {
         const dy = mouse.y - center.y
         const rotation = Math.atan2(dy, dx) + Math.PI / 2;
         return (
+            [
             <ImageSprite
                 image={p2}
                 x={center.x} 
                 y={center.y} 
                 rotation={rotation}
             />
+                <ClickExplotion/>,
+            ]
         );
     }
 }
