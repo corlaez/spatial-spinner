@@ -5,21 +5,19 @@ import Bunny from "./Bunny";
 
 class Player extends React.Component {
     render() {
-        const {x, y, mouse} = this.props
-        const dx = mouse.x - x
-        const dy = mouse.y - y
-        console.log(Math.atan(dy / dx))
-        const rotation = Math.atan(dy / dx) - Math.PI / 2;
+        const {center, mouse} = this.props
+        const dx = mouse.x - center.x
+        const dy = mouse.y - center.y
+        const rotation = Math.atan2(dy, dx) + Math.PI / 2;
         return (
-            <Bunny x={x} y={y} rotation={rotation}/>
+            <Bunny x={center.x} y={center.y} rotation={rotation}/>
         );
     }
 }
 
 export default connect(
   {
-    x: state`mouse.center.x`,
-    y: state`mouse.center.y`,
+    center: state`mouse.center`,
     mouse: state`mouse.now`
   }, 
   Player
