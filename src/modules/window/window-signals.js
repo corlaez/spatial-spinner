@@ -7,8 +7,8 @@ const setSize = [
 ]
 
 const center = ({window, controller}) => {
-    const setCenter = controller.getSignal('mouse.setCenter')
-    const setSize = controller.getSignal('window.setSize')
+    const setCenter = controller.getSignal('app.mouse.setCenter')
+    const setSize = controller.getSignal('app.window.setSize')
     const onResize = () => {
         const x = window.innerWidth / 2
         const y = window.innerHeight / 2
@@ -20,7 +20,7 @@ const center = ({window, controller}) => {
 }
 
 const mouseMove = ({window, controller}) => {
-    const setMouseMove = controller.getSignal('mouse.setMouseMove')
+    const setMouseMove = controller.getSignal('app.mouse.setMouseMove')
     window.onmousemove = e => {
         const {x, y} = e
         setMouseMove({x, y})
@@ -28,7 +28,7 @@ const mouseMove = ({window, controller}) => {
 }
 
 const mouseClick = ({window, controller}) => {
-    const setClick = controller.getSignal('mouse.setClick')
+    const setClick = controller.getSignal('app.mouse.setClick')
     window.onmousedown = e => {
         const {x, y} = e
         setClick({x, y})
@@ -41,8 +41,8 @@ const mouseClick = ({window, controller}) => {
 const initMouse = [center, mouseMove, mouseClick]
 
 const initKeys = ({window, controller}) => {
-    const setKey = controller.getSignal('keys.setKey')
-    const unsetKey = controller.getSignal('keys.unsetKey')
+    const setKey = controller.getSignal('app.keys.setKey')
+    const unsetKey = controller.getSignal('app.keys.unsetKey')
     window.onkeydown = e => {
         const {keyCode, key, shiftKey} = e
         setKey({

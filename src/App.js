@@ -14,6 +14,6 @@ const App = ({width, height}) => (
 ); 
 
 export default connect({
-  width: state`window.size.width`,
-  height: state`window.size.height`,
+  width: state`app.window.size.width`,
+  height: state`app.window.size.height`,
 }, App);
