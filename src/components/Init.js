@@ -11,7 +11,7 @@ class Init extends React.Component {
 }
 
 const connectObj = { 
-    windowInit: signal`window.init`,
+    windowInit: signal`app.window.init`,
 }
 
 export default connect(connectObj, Init)
