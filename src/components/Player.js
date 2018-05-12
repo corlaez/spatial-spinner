@@ -23,9 +23,9 @@ class Player extends React.Component {
 }
 
 export default connect(
-  {
-    center: state`app.mouse.center`,
-    mouse: state`app.mouse.now`,
-  }, 
-  Player
+    {
+      center: state`app.mouse.center`,
+      mouse: state`app.mouse.now`,
+    }, 
+    Player
 );

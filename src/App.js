@@ -6,7 +6,7 @@ import Player from './components/Player';
 import Stars from './components/Stars';
 
 const options = {
-    backgroundColor: 0x000000
+    //backgroundColor: 0x000000
 }
 const App = ({width, height}) => (
   <Stage options={options} width={width - 20} height={height - 20}>
