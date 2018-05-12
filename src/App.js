@@ -8,7 +8,7 @@ const options = {
     backgroundColor: 0x000000
 }
 const App = ({width, height}) => (
-  <Stage options={options} width={width} height={height}>
+  <Stage options={options} width={width - 20} height={height - 20}>
     <Player />
   </Stage>
 ); 
