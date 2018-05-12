@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "@cerebral/react"
 import { state } from "cerebral/tags"
-import Bunny from "./Bunny";
+import ImageSprite from "./ImageSprite";
+import p2 from "./player2.png";
+//const bunny = "https://i.imgur.com/IaUrttj.png";
 
 class Player extends React.Component {
     render() {
@@ -10,7 +12,12 @@ class Player extends React.Component {
         const dy = mouse.y - center.y
         const rotation = Math.atan2(dy, dx) + Math.PI / 2;
         return (
-            <Bunny x={center.x} y={center.y} rotation={rotation}/>
+            <ImageSprite
+                image={p2}
+                x={center.x} 
+                y={center.y} 
+                rotation={rotation}
+            />
         );
     }
 }
@@ -18,7 +25,7 @@ class Player extends React.Component {
 export default connect(
   {
     center: state`app.mouse.center`,
-    mouse: state`app.mouse.now`
+    mouse: state`app.mouse.now`,
   }, 
   Player
 );
