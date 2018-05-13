@@ -1,20 +1,30 @@
 import React from "react";
-import { Sprite } from "react-pixi-fiber";
-import * as PIXI from "pixi.js";/*
-import bunny from "./player.png";
-import p2 from "./player2.png";*/
+import { connect } from "@cerebral/react"
+import { state } from 'cerebral/tags'
+import bullet from "../assets/bullet.png";
+import ImageSprite from "./ImageSprite";
+import playerRotation from "../computed/playerRotation";
+import isMouseDown from "../computed/isMouseDown";
 
-const centerAnchor = new PIXI.Point(0.5, 0.5);
-const bunny = "https://i.imgur.com/IaUrttj.png";
-
-function Bullet(props) {
-  return (
-    <Sprite
-      anchor={centerAnchor}
-      texture={PIXI.Texture.fromImage(bunny)}
-      {...props}
-    />
-  );
+class Bullet extends React.Component {
+    render() {
+        const { center, otherProps, rotation } = this.props
+        return (
+            <ImageSprite
+                x={center.x + 40 * Math.cos(rotation)}
+                y={center.y + 40 * Math.sin(rotation)}
+                image={bullet}
+                rotation={rotation}
+                scale={0.4}
+            />
+        );
+    }
 }
 
-export default Bullet
+export default connect(
+    {
+        center: state`app.window.center`,
+        rotation: playerRotation,
+    },
+    Bullet
+);

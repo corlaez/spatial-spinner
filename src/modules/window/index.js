@@ -7,7 +7,8 @@ const window = Module({
         size: {
             width: 0, 
             height: 0,
-        }
+        },
+        center: {}
     },
     signals,
     providers

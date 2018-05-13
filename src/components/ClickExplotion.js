@@ -15,7 +15,7 @@ class ClickExplotion extends React.Component {
 
 export default connect(
   {
-    click: state`mouse.click`
+    click: state`app.mouse.click`
   }, 
   ClickExplotion
 );
