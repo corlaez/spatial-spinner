@@ -1,13 +1,12 @@
 import React from "react";
 import { connect } from "@cerebral/react"
 import { state, signal } from "cerebral/tags"
-import stark1 from '../assets/stark1.png'
+import ImageSprite from "./ImageSprite";
+import stark1 from '../assets/stark1.png'/*
 import stark2 from '../assets/stark2.png'
 import stark3 from '../assets/stark3.png'
 import stark4 from '../assets/stark4.png'
-import { Text } from "react-pixi-fiber";
-import playerDirection from "../computed/playerDirection";
-import ImageSprite from "./ImageSprite";
+import playerDirection from "../computed/playerDirection";*/
 
 class Stars extends React.Component {
     componentDidMount() {

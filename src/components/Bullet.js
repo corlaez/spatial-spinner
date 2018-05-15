@@ -1,30 +1,42 @@
 import React from "react";
-import { connect } from "@cerebral/react"
-import { state } from 'cerebral/tags'
+import PropTypes from "prop-types";
 import bullet from "../assets/bullet.png";
 import ImageSprite from "./ImageSprite";
-import playerRotation from "../computed/playerRotation";
-import isMouseDown from "../computed/isMouseDown";
 
 class Bullet extends React.Component {
+
+    componentDidMount() {
+      this.context.app.ticker.add(this.animate);
+    }
+  
+    componentWillUnmount() {
+      this.context.app.ticker.remove(this.animate);
+    }
+
+    animate = delta => {
+        // delta is 1 if running at 100% performance
+        // creates frame-independent tranformation
+        this.props.move({
+            bulletKey: this.props.bulletKey,
+            value: 1
+        });
+    };
+
     render() {
-        const { center, otherProps, rotation } = this.props
+        const { x, y, rotation } = this.props
         return (
             <ImageSprite
-                x={center.x + 40 * Math.cos(rotation)}
-                y={center.y + 40 * Math.sin(rotation)}
                 image={bullet}
-                rotation={rotation}
                 scale={0.4}
+                rotation={rotation}
+                x={x}
+                y={y}
             />
         );
     }
 }
+Bullet.contextTypes = {
+  app: PropTypes.object
+};
 
-export default connect(
-    {
-        center: state`app.window.center`,
-        rotation: playerRotation,
-    },
-    Bullet
-);
+export default Bullet

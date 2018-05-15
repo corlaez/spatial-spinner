@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "@cerebral/react"
-import { state } from "cerebral/tags"
+import { state, signal } from "cerebral/tags"
 import ImageSprite from "./ImageSprite";
 import image from "../assets/player3.png";
 import playerRotation from "../computed/playerRotation";
@@ -10,7 +10,7 @@ import Bullet from "./Bullet";
 
 class Player extends React.Component {
     render() {
-        const { center, rotation } = this.props
+        const { center, rotation, bullets, moveBullet } = this.props
         return (
             <React.Fragment>
                 <ImageSprite
@@ -19,7 +19,7 @@ class Player extends React.Component {
                     y={center.y} 
                     rotation={rotation}
                 />
-                <Bullet/>
+                {Object.keys(bullets).map(key => <Bullet {...bullets[key]} move={moveBullet}/>)}
             </React.Fragment>
         );
     }
@@ -28,6 +28,8 @@ class Player extends React.Component {
 export default connect(
     {
       center: state`app.window.center`,
+      bullets: state`app.player.bullets`,
+      moveBullet: signal`app.player.moveBullet`,
       rotation: playerRotation
     }, 
     Player

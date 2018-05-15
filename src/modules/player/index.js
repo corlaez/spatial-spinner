@@ -3,7 +3,7 @@ import signals from './player-signals'
 
 const player = Module({
     state: {
-        bullets: []
+        bullets: {}
     },
     signals
 })
