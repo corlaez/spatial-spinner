@@ -49,7 +49,7 @@ export default connect(
       center: state`app.window.center`,
       bullets: state`app.player.bullets`,
       moveBullet: signal`app.player.moveBullet`,
-      rotation: playerRotation
+      rotation: playerRotation,
     }, 
     Player
 );
