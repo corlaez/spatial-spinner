@@ -1,5 +1,3 @@
-
-
 const createStar = (key, screenSize) => ({
     x: Math.random() * screenSize.width - 20,
     y: Math.random() * screenSize.height - 20,
@@ -13,6 +11,22 @@ const init = ({state}) => {
         state.push('app.background.stars', createStar(i, screenSize))
 }
 
+const moveStars = ({props, module}) => {
+    if(!props.playerDirection) {
+        return
+    }
+    const {xSign, ySign} = props.playerDirection
+    const stars = module.get('stars')
+    const newStars = stars.map(e => ({
+        ...e,
+        // -1: our stars go against the playerDirection
+        x: e.x + e.scale * xSign * -1,
+        y: e.y + e.scale * ySign * -1,
+    })) 
+    module.set('stars', newStars)
+}
+
 export default {
-    init
+    init,
+    moveStars
 }

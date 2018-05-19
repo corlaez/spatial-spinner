@@ -10,6 +10,9 @@ import PropTypes from "prop-types";
 //const bunny = "https://i.imgur.com/IaUrttj.png";
 
 class Player extends React.Component {
+    static contextTypes = {
+        app: PropTypes.object
+    };
 
     componentDidMount() {
       this.context.app.ticker.add(this.animate);
@@ -22,6 +25,7 @@ class Player extends React.Component {
     animate = delta => {
         // delta is 1 if running at 100% performance
         // creates frame-independent tranformation
+        this.props.moveBullet();
         this.props.moveBullet();
     };
 
@@ -40,9 +44,6 @@ class Player extends React.Component {
         );
     }
 }
-Player.contextTypes = {
-  app: PropTypes.object
-};
 
 export default connect(
     {
@@ -50,6 +51,6 @@ export default connect(
       bullets: state`app.player.bullets`,
       moveBullet: signal`app.player.moveBullet`,
       rotation: playerRotation,
-    }, 
+    },
     Player
 );
