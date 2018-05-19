@@ -1,31 +1,55 @@
 import React from "react";
 import { connect } from "@cerebral/react"
-import { state } from "cerebral/tags"
+import { state, signal } from "cerebral/tags"
 import ImageSprite from "./ImageSprite";
-import p2 from "./player2.png";
+import image from "../assets/player3.png";
+import playerRotation from "../computed/playerRotation";
+import Bullet from "./Bullet";
+import PropTypes from "prop-types";
+
 //const bunny = "https://i.imgur.com/IaUrttj.png";
 
 class Player extends React.Component {
+
+    componentDidMount() {
+      this.context.app.ticker.add(this.animate);
+    }
+  
+    componentWillUnmount() {
+      this.context.app.ticker.remove(this.animate);
+    }
+
+    animate = delta => {
+        // delta is 1 if running at 100% performance
+        // creates frame-independent tranformation
+        this.props.moveBullet();
+    };
+
     render() {
-        const {center, mouse} = this.props
-        const dx = mouse.x - center.x
-        const dy = mouse.y - center.y
-        const rotation = Math.atan2(dy, dx) + Math.PI / 2;
+        const { center, rotation, bullets } = this.props
         return (
-            <ImageSprite
-                image={p2}
-                x={center.x} 
-                y={center.y} 
-                rotation={rotation}
-            />
+            <React.Fragment>
+                <ImageSprite
+                    image={image}
+                    x={center.x} 
+                    y={center.y} 
+                    rotation={rotation}
+                />
+                {Object.keys(bullets).map(key => <Bullet key={key} {...bullets[key]}/>)}
+            </React.Fragment>
         );
     }
 }
+Player.contextTypes = {
+  app: PropTypes.object
+};
 
 export default connect(
     {
-      center: state`app.mouse.center`,
-      mouse: state`app.mouse.now`,
+      center: state`app.window.center`,
+      bullets: state`app.player.bullets`,
+      moveBullet: signal`app.player.moveBullet`,
+      rotation: playerRotation,
     }, 
     Player
 );

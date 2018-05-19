@@ -8,7 +8,7 @@ import Stars from './components/Stars';
 const options = {
     //backgroundColor: 0x000000
 }
-const App = ({width, height}) => (
+const StageApp = ({width, height}) => (
   <Stage options={options} width={width - 20} height={height - 20}>
     <Stars/>
     <Player />
@@ -18,4 +18,4 @@ const App = ({width, height}) => (
 export default connect({
   width: state`app.window.size.width`,
   height: state`app.window.size.height`,
-}, App);
+}, StageApp);

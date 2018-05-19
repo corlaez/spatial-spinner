@@ -1,5 +1,6 @@
 import {module, props} from 'cerebral/tags'
 import {set} from 'cerebral/operators'
+import { createSetPosition } from '../helpers';
 
 const setSize = [
     set(module`size.width`,props`width`),
@@ -7,7 +8,7 @@ const setSize = [
 ]
 
 const center = ({window, controller}) => {
-    const setCenter = controller.getSignal('app.mouse.setCenter')
+    const setCenter = controller.getSignal('app.window.setCenter')
     const setSize = controller.getSignal('app.window.setSize')
     const onResize = () => {
         const x = window.innerWidth / 2
@@ -62,7 +63,10 @@ const initKeys = ({window, controller}) => {
 
 const init = [initMouse, initKeys]
 
+const setCenter = createSetPosition('center')
+
 export default {
     init,
-    setSize
+    setSize,
+    setCenter,
 }
