@@ -2,7 +2,11 @@ import React from "react";
 import { connect } from "@cerebral/react"
 import { state, signal } from "cerebral/tags"
 import ImageSprite from "./ImageSprite";
-import image from "../assets/player3.png";
+import image from "../assets/Asset-Spaceship/ShipIdle.png";
+import shipTilt0 from "../assets/Asset-Spaceship/ShipTilt/sprite_0.png";
+import shipTilt1 from "../assets/Asset-Spaceship/ShipTilt/sprite_1.png";
+import shipTilt2 from "../assets/Asset-Spaceship/ShipTilt/sprite_2.png";
+import shipTilt3 from "../assets/Asset-Spaceship/ShipTilt/sprite_3.png";
 import playerRotation from "../computed/playerRotation";
 import Bullet from "./Bullet";
 import PropTypes from "prop-types";
@@ -43,6 +47,7 @@ class Player extends React.Component {
                     x={center.x} 
                     y={center.y} 
                     rotation={rotation}
+                    scale={1.2}
                 />
                 {Object.keys(bullets).map(key => <Bullet key={key} {...bullets[key]}/>)}
             </React.Fragment>
