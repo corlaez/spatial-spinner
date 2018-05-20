@@ -15,11 +15,16 @@ class Player extends React.Component {
     };
 
     componentDidMount() {
-      this.context.app.ticker.add(this.animate);
+        window.document.addEventListener(
+            "contextmenu", 
+            (e) => e.preventDefault(), 
+            false
+        );
+        this.context.app.ticker.add(this.animate);
     }
   
     componentWillUnmount() {
-      this.context.app.ticker.remove(this.animate);
+        this.context.app.ticker.remove(this.animate);
     }
 
     animate = delta => {
