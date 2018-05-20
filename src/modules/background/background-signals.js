@@ -20,8 +20,8 @@ const moveStars = ({props, module}) => {
     const newStars = stars.map(e => ({
         ...e,
         // -1: our stars go against the playerDirection
-        x: e.x + e.scale * 80 * xSign * -1,
-        y: e.y + e.scale * 80 * ySign * -1,
+        x: e.x + e.scale * 40 * xSign * -1,
+        y: e.y + e.scale * 40 * ySign * -1,
     })) // TODO: CLEANUP AND CREATE NEW RANDOM STARS (OR LOOP)
     module.set('stars', newStars)
 }
